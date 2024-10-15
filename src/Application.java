@@ -1,4 +1,4 @@
-public class Main {
+public class Application {
     public static void main(String[] args) {
 
         var counter = new BoomCounter(n -> n % 7 == 0 || Integer.toString(n).contains("7"));
