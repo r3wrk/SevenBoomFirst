@@ -1,14 +1,11 @@
-import java.io.PrintStream;
 import java.util.function.Predicate;
 
 public class BoomCounter {
     private int count = 0;
     private final Predicate<Integer> isBoom;
-    private final PrintStream out;
 
-    public BoomCounter(Predicate<Integer> isBoom, PrintStream out) {
+    public BoomCounter(Predicate<Integer> isBoom) {
         this.isBoom = isBoom;
-        this.out = out;
     }
 
     private String getCountAsString() {
@@ -23,7 +20,7 @@ public class BoomCounter {
         }
 
         count++;
-        out.println(getCountAsString());
+        System.out.println(getCountAsString());
         return true;
     }
 }
