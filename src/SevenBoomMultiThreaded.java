@@ -3,7 +3,7 @@ import java.util.stream.IntStream;
 
 public class SevenBoomMultiThreaded {
     private static final int THREAD_COUNT = 4;
-    private final Object SEVEN_BOOM_LOCK = new Object();
+    private final Object sevenBoomLock = new Object();
     private final int maxInput;
 
     public SevenBoomMultiThreaded(int maxInput) {
@@ -16,7 +16,7 @@ public class SevenBoomMultiThreaded {
         var boomFormatter = new BoomFormatter(isSevenBoom);
 
         for (int i = 0; i < THREAD_COUNT; i++) {
-            new SevenBoomThread(SEVEN_BOOM_LOCK, inputs, boomFormatter).start();
+            new SevenBoomThread(sevenBoomLock, inputs, boomFormatter).start();
         }
     }
 }
