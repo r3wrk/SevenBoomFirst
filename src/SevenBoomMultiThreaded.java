@@ -5,10 +5,12 @@ public class SevenBoomMultiThreaded {
     private static final int MIN_SEVEN_BOOM_INPUT = 1;
     private final Object sevenBoomLock = new Object();
     private final int maxSevenBoomInput;
+    private final int sevenBoomDivisor;
     private final int threadCount;
 
-    public SevenBoomMultiThreaded(int maxSevenBoomInput, int threadCount) {
+    public SevenBoomMultiThreaded(int maxSevenBoomInput, int sevenBoomDivisor, int threadCount) {
         this.maxSevenBoomInput = maxSevenBoomInput;
+        this.sevenBoomDivisor = sevenBoomDivisor;
         this.threadCount = threadCount;
     }
 
@@ -24,8 +26,9 @@ public class SevenBoomMultiThreaded {
     }
 
     private Predicate<Integer> createIsSevenBoomPredicate() {
-        Predicate<Integer> isDivisibleBySeven = n -> n % 7 == 0;
-        Predicate<Integer> containsSevenAsString = n -> Integer.toString(n).contains("7");
-        return isDivisibleBySeven.or(containsSevenAsString);
+        Predicate<Integer> isDivisibleByDivisor = n -> n % sevenBoomDivisor == 0;
+        var divisorString = Integer.toString(sevenBoomDivisor);
+        Predicate<Integer> containsDivisorAsString = n -> Integer.toString(n).contains(divisorString);
+        return isDivisibleByDivisor.or(containsDivisorAsString);
     }
 }
