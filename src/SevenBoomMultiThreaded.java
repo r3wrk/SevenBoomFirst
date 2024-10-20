@@ -1,9 +1,10 @@
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class SevenBoomMultiThreaded {
     private static final int MIN_SEVEN_BOOM_INPUT = 1;
-    private final Object sevenBoomLock = new Object();
+    private final ReentrantLock sevenBoomLock = new ReentrantLock();
     private final int maxSevenBoomInput;
     private final int sevenBoomDivisor;
     private final int threadCount;
