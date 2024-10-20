@@ -16,7 +16,8 @@ public class SevenBoomMultiThreaded {
         var boomFormatter = new BoomFormatter(isSevenBoom);
 
         for (int i = 0; i < THREAD_COUNT; i++) {
-            new SevenBoomThread(sevenBoomLock, inputs, boomFormatter).start();
+            var sevenBoomThread = new SevenBoomThread(sevenBoomLock, inputs, boomFormatter);
+            sevenBoomThread.start();
         }
     }
 }
