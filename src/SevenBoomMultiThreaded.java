@@ -17,10 +17,10 @@ public class SevenBoomMultiThreaded {
     public void run() {
         Predicate<Integer> isSevenBoom = createIsSevenBoomPredicate();
         var sevenBoomInputs = IntStream.range(MIN_SEVEN_BOOM_INPUT, maxSevenBoomInput + 1).iterator();
-        var boomFormatter = new BoomFormatter(isSevenBoom);
+        var boomTester = new BoomTester(isSevenBoom);
 
         for (int i = 0; i < threadCount; i++) {
-            var sevenBoomThread = new SevenBoomThread(sevenBoomLock, sevenBoomInputs, boomFormatter);
+            var sevenBoomThread = new SevenBoomThread(sevenBoomLock, sevenBoomInputs, boomTester);
             sevenBoomThread.start();
         }
     }

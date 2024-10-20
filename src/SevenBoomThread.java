@@ -2,12 +2,12 @@ import java.util.Iterator;
 
 public class SevenBoomThread extends Thread {
     private final Iterator<Integer> inputs;
-    private final BoomFormatter boomFormatter;
+    private final BoomTester boomTester;
     private final Object sevenBoomLock;
 
-    public SevenBoomThread(Object sevenBoomLock, Iterator<Integer> inputs, BoomFormatter boomFormatter) {
+    public SevenBoomThread(Object sevenBoomLock, Iterator<Integer> inputs, BoomTester boomTester) {
         this.inputs = inputs;
-        this.boomFormatter = boomFormatter;
+        this.boomTester = boomTester;
         this.sevenBoomLock = sevenBoomLock;
     }
 
@@ -18,7 +18,7 @@ public class SevenBoomThread extends Thread {
                 if (!inputs.hasNext()) {
                     return;
                 }
-                System.out.println(boomFormatter.format(inputs.next()));
+                System.out.println(boomTester.format(inputs.next()));
             }
         }
     }

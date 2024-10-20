@@ -1,10 +1,10 @@
 import java.util.function.Predicate;
 
-public class BoomFormatter {
+public class BoomTester {
     private static final String BOOM_OUTPUT_VALUE = "BOOM";
     private final Predicate<Integer> isNumberBoom;
 
-    public BoomFormatter(Predicate<Integer> isNumberBoom) {
+    public BoomTester(Predicate<Integer> isNumberBoom) {
         this.isNumberBoom = isNumberBoom;
     }
 
