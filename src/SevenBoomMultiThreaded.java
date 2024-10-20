@@ -2,12 +2,13 @@ import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class SevenBoomMultiThreaded {
-    private static final int THREAD_COUNT = 4;
     private final Object sevenBoomLock = new Object();
     private final int maxInput;
+    private final int threadCount;
 
-    public SevenBoomMultiThreaded(int maxInput) {
+    public SevenBoomMultiThreaded(int maxInput, int threadCount) {
         this.maxInput = maxInput;
+        this.threadCount = threadCount;
     }
 
     public void run() {
@@ -15,7 +16,7 @@ public class SevenBoomMultiThreaded {
         var inputs = IntStream.range(1, maxInput + 1).iterator();
         var boomFormatter = new BoomFormatter(isSevenBoom);
 
-        for (int i = 0; i < THREAD_COUNT; i++) {
+        for (int i = 0; i < threadCount; i++) {
             var sevenBoomThread = new SevenBoomThread(sevenBoomLock, inputs, boomFormatter);
             sevenBoomThread.start();
         }
