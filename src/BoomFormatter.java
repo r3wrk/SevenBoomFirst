@@ -1,7 +1,7 @@
 import java.util.function.Predicate;
 
 public class BoomFormatter {
-    private static final String BOOM = "BOOM";
+    private static final String BOOM_OUTPUT_VALUE = "BOOM";
     private final Predicate<Integer> isNumberBoom;
 
     public BoomFormatter(Predicate<Integer> isNumberBoom) {
@@ -9,6 +9,6 @@ public class BoomFormatter {
     }
 
     public String format(int input) {
-        return isNumberBoom.test(input) ? BOOM : Integer.toString(input);
+        return isNumberBoom.test(input) ? BOOM_OUTPUT_VALUE : Integer.toString(input);
     }
 }
