@@ -14,7 +14,7 @@ public class SevenBoomThread extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (inputs.hasNext()) {
             sevenBoomLock.lock();
             try {
                 if (!inputs.hasNext()) {
