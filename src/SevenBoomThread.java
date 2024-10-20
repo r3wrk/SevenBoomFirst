@@ -23,7 +23,6 @@ public class SevenBoomThread extends Thread {
                     String formattedOutput = boomTester.format(nextSevenBoomInput.getAndIncrement());
                     System.out.println(formattedOutput);
                 }
-
             } finally {
                 sevenBoomLock.unlock();
             }
