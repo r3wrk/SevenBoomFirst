@@ -18,7 +18,8 @@ public class SevenBoomThread extends Thread {
                 if (!inputs.hasNext()) {
                     return;
                 }
-                System.out.println(boomTester.format(inputs.next()));
+                String formattedOutput = boomTester.format(inputs.next());
+                System.out.println(formattedOutput);
             }
         }
     }
