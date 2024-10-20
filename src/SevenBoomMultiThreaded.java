@@ -1,6 +1,6 @@
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Predicate;
-import java.util.stream.IntStream;
 
 public class SevenBoomMultiThreaded {
     private static final int MIN_SEVEN_BOOM_INPUT = 1;
@@ -17,11 +17,11 @@ public class SevenBoomMultiThreaded {
 
     public void run() {
         Predicate<Integer> isSevenBoom = createIsSevenBoomPredicate();
-        var sevenBoomInputs = IntStream.range(MIN_SEVEN_BOOM_INPUT, maxSevenBoomInput + 1).iterator();
+        var nextSevenBoomInput = new AtomicInteger(MIN_SEVEN_BOOM_INPUT);
         var boomTester = new BoomTester(isSevenBoom);
 
         for (int i = 0; i < threadCount; i++) {
-            var sevenBoomThread = new SevenBoomThread(sevenBoomLock, sevenBoomInputs, boomTester);
+            var sevenBoomThread = new SevenBoomThread(sevenBoomLock, nextSevenBoomInput, maxSevenBoomInput, boomTester);
             sevenBoomThread.start();
         }
     }
