@@ -12,7 +12,7 @@ public class SevenBoomMultiThreaded {
     }
 
     public void run() {
-        Predicate<Integer> isSevenBoom = n -> n % 7 == 0 || Integer.toString(n).contains("7");
+        Predicate<Integer> isSevenBoom = createIsSevenBoomPredicate();
         var inputs = IntStream.range(1, maxInput + 1).iterator();
         var boomFormatter = new BoomFormatter(isSevenBoom);
 
@@ -20,5 +20,11 @@ public class SevenBoomMultiThreaded {
             var sevenBoomThread = new SevenBoomThread(sevenBoomLock, inputs, boomFormatter);
             sevenBoomThread.start();
         }
+    }
+
+    private Predicate<Integer> createIsSevenBoomPredicate() {
+        Predicate<Integer> isDivisibleBySeven = n -> n % 7 == 0;
+        Predicate<Integer> containsSevenAsString = n -> Integer.toString(n).contains("7");
+        return isDivisibleBySeven.or(containsSevenAsString);
     }
 }
